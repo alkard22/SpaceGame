@@ -5,7 +5,7 @@ using UnityEngine;
 public class Orbit : MonoBehaviour {
 
     #region member
-    private float m_orbitSpeed = 3f;
+    private float m_orbitSpeed = 8f;
     private Transform m_parent;
     #endregion
 

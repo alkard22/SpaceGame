@@ -24,12 +24,12 @@ public class DrawOrbit : MonoBehaviour {
     [Tooltip("The offset will be applied in the direction of the axis.")]
     private float _offset = 0;
 
-    [SerializeField]
-    [Tooltip("The axis about which the circle is drawn.")]
-    private Axis _axis = Axis.Z;
+    //[SerializeField]
+    //[Tooltip("The axis about which the circle is drawn.")]
+    private Axis _axis = Axis.Y;
 
-    [SerializeField]
-    [Tooltip("If checked, the circle will be rendered again each time one of the parameters change.")]
+    //[SerializeField]
+    //[Tooltip("If checked, the circle will be rendered again each time one of the parameters change.")]
     private bool _checkValuesChanged = true;
 
     private int _previousSegmentsValue;
@@ -37,17 +37,24 @@ public class DrawOrbit : MonoBehaviour {
     private float _previousVertRadiusValue;
     private float _previousOffsetValue;
     private Axis _previousAxisValue;
+    private Vector3 m_parentPostion;
 
     private LineRenderer _line;
 
     void Start()
     {
         _line = gameObject.GetComponent<LineRenderer>();
+        m_parentPostion = this.transform.parent.position;
+        _line.numPositions =(_segments + 1);
+        _line.useWorldSpace = true;
 
-        _line.SetVertexCount(_segments + 1);
-        _line.useWorldSpace = false;
-
-        UpdateValuesChanged();
+        float radius = Vector3.Distance(transform.position, m_parentPostion);
+        _vertRadius = radius;
+        _horizRadius = radius;
+        Debug.Log(radius);
+        _offset = radius * m_parentPostion.z;
+       //_line.transform.position = Vector3.zero;
+        //UpdateValuesChanged();
 
         CreatePoints();
     }
@@ -80,11 +87,11 @@ public class DrawOrbit : MonoBehaviour {
     {
 
         if(_previousSegmentsValue != _segments) {
-            _line.SetVertexCount(_segments + 1);
+            _line.numPositions = (_segments + 1);
         }
 
-        float x;
-        float y;
+        float x = m_parentPostion.x;
+        float y = m_parentPostion.y;
         float z = _offset;
 
         float angle = 0f;

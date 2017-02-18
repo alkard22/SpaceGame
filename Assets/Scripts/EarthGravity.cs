@@ -26,12 +26,17 @@ public class EarthGravity : MonoBehaviour {
     {
         foreach(Collider collider in Physics.OverlapSphere(transform.position, m_pullRadius))
         {
-            // calculate direction from target to me
-            Vector3 forceDirection = transform.position - collider.transform.position;
-            Debug.Log("collided" + m_pullForce); 
-            // apply force on target towards me
-            Rigidbody rb = collider.GetComponent<Rigidbody>();
-            rb.AddForce(forceDirection.normalized * m_pullForce * Time.fixedDeltaTime);
+            //only apply gravity if its not IgnoreGravity
+            if(!collider.CompareTag("IgnoreGravity")) 
+            {
+                // calculate direction from target to me
+                Vector3 forceDirection = transform.position - collider.transform.position;
+
+                // apply force on target towards me
+                Rigidbody rb = collider.GetComponent<Rigidbody>();
+                rb.AddForce(forceDirection.normalized * m_pullForce * Time.fixedDeltaTime);
+            }           
+            
         }
     }
     #endregion
