@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
-public class DrawOrbit : MonoBehaviour {
-
+public class DrawOrbit : MonoBehaviour
+{
     public enum Axis { X, Y, Z };
 
     [SerializeField]
@@ -52,9 +50,7 @@ public class DrawOrbit : MonoBehaviour {
         _vertRadius = radius;
         _horizRadius = radius;
         Debug.Log(radius);
-        _offset = radius * m_parentPostion.z;
-       //_line.transform.position = Vector3.zero;
-        //UpdateValuesChanged();
+        _offset = m_parentPostion.y;
 
         CreatePoints();
     }
@@ -85,7 +81,6 @@ public class DrawOrbit : MonoBehaviour {
 
     void CreatePoints()
     {
-
         if(_previousSegmentsValue != _segments) {
             _line.numPositions = (_segments + 1);
         }
