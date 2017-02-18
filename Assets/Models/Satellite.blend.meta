@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: e0170ba798529fd4688127e2b9209a8b
-timeCreated: 1487400434
+guid: b33b966e23223eb418e75768a49ddba1
+timeCreated: 1487401973
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     100002: Dish
     100004: DishSpike
     100006: LeftStrut
-    100008: RightStrut
+    100008: RightStruct
     100010: //RootNode
     100012: SolarPanelLeft
     100014: SolarPanelRight
@@ -17,7 +17,7 @@ ModelImporter:
     400002: Dish
     400004: DishSpike
     400006: LeftStrut
-    400008: RightStrut
+    400008: RightStruct
     400010: //RootNode
     400012: SolarPanelLeft
     400014: SolarPanelRight
@@ -25,23 +25,23 @@ ModelImporter:
     2300002: Dish
     2300004: DishSpike
     2300006: LeftStrut
-    2300008: RightStrut
+    2300008: RightStruct
     2300010: SolarPanelLeft
     2300012: SolarPanelRight
     3300000: Body
     3300002: Dish
     3300004: DishSpike
     3300006: LeftStrut
-    3300008: RightStrut
+    3300008: RightStruct
     3300010: SolarPanelLeft
     3300012: SolarPanelRight
-    4300000: DishSpike
-    4300002: Dish
-    4300004: LeftStrut
-    4300006: Body
-    4300008: RightStrut
-    4300010: SolarPanelLeft
-    4300012: SolarPanelRight
+    4300000: RightStruct
+    4300002: SolarPanelRight
+    4300004: DishSpike
+    4300006: Dish
+    4300008: LeftStrut
+    4300010: Body
+    4300012: SolarPanelLeft
     7400000: Default Take
     9500000: //RootNode
   materials:
