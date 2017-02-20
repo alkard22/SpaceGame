@@ -3,8 +3,6 @@
 [RequireComponent(typeof(LineRenderer))]
 public class DrawOrbit : MonoBehaviour
 {
-    public enum Axis { X, Y, Z };
-
     [SerializeField]
     [Tooltip("The number of lines that will be used to draw the circle. The more lines, the more the circle will be \"flexible\".")]
     [Range(0, 1000)]
@@ -22,71 +20,52 @@ public class DrawOrbit : MonoBehaviour
     [Tooltip("The offset will be applied in the direction of the axis.")]
     private float _offset = 0;
 
-    //[SerializeField]
-    //[Tooltip("The axis about which the circle is drawn.")]
-    private Axis _axis = Axis.Y;
-
-    //[SerializeField]
-    //[Tooltip("If checked, the circle will be rendered again each time one of the parameters change.")]
-    private bool _checkValuesChanged = true;
+    [SerializeField]
+    [Tooltip("If checked, the circle will be rendered again each time one of the parameters change.")]
+    private bool _orbitResize = false;
 
     private int _previousSegmentsValue;
-    private float _previousHorizRadiusValue;
-    private float _previousVertRadiusValue;
-    private float _previousOffsetValue;
-    private Axis _previousAxisValue;
-    private Vector3 m_parentPostion;
 
     private LineRenderer _line;
 
     void Start()
     {
         _line = gameObject.GetComponent<LineRenderer>();
-        m_parentPostion = this.transform.parent.position;
-        _line.numPositions =(_segments + 1);
-        _line.useWorldSpace = true;
-
-        float radius = Vector3.Distance(transform.position, m_parentPostion);
-        _vertRadius = radius;
-        _horizRadius = radius;
-        Debug.Log(radius);
-        _offset = m_parentPostion.y;
+        _line.numPositions = (_segments + 1);
+        _previousSegmentsValue = _line.numPositions;
+        _line.useWorldSpace = false;
+        _offset = 0;
 
         CreatePoints();
     }
 
     void Update()
     {
-        if(_checkValuesChanged) {
-            if(_previousSegmentsValue != _segments ||
-                _previousHorizRadiusValue != _horizRadius ||
-                _previousVertRadiusValue != _vertRadius ||
-                _previousOffsetValue != _offset ||
-                _previousAxisValue != _axis) {
-                CreatePoints();
-            }
-
-            UpdateValuesChanged();
+        if(_orbitResize) {
+            CreatePoints();
         }
     }
 
-    void UpdateValuesChanged()
+    public void SetOrbitRadius(float radius)
     {
-        _previousSegmentsValue = _segments;
-        _previousHorizRadiusValue = _horizRadius;
-        _previousVertRadiusValue = _vertRadius;
-        _previousOffsetValue = _offset;
-        _previousAxisValue = _axis;
+        _vertRadius = radius;
+        _horizRadius = radius;
+    }
+
+    public void EnableOrbitResize(bool b)
+    {
+        _orbitResize = b;
     }
 
     void CreatePoints()
     {
         if(_previousSegmentsValue != _segments) {
             _line.numPositions = (_segments + 1);
+            _previousSegmentsValue = _line.numPositions;
         }
 
-        float x = m_parentPostion.x;
-        float y = m_parentPostion.y;
+        float x = 0; // Could change this to another objects position if we want don't want this to be a child
+        float y = 0; // Could change this to another objects position if we want don't want this to be a child
         float z = _offset;
 
         float angle = 0f;
@@ -95,19 +74,7 @@ public class DrawOrbit : MonoBehaviour
             x = Mathf.Sin(Mathf.Deg2Rad * angle) * _horizRadius;
             y = Mathf.Cos(Mathf.Deg2Rad * angle) * _vertRadius;
 
-            switch(_axis) {
-                case Axis.X:
-                    _line.SetPosition(i, new Vector3(z, y, x));
-                    break;
-                case Axis.Y:
-                    _line.SetPosition(i, new Vector3(y, z, x));
-                    break;
-                case Axis.Z:
-                    _line.SetPosition(i, new Vector3(x, y, z));
-                    break;
-                default:
-                    break;
-            }
+            _line.SetPosition(i, new Vector3(y, z, x));
 
             angle += (360f / _segments);
         }

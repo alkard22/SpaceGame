@@ -2,21 +2,26 @@
 
 public class Orbit : MonoBehaviour
 {
-    #region member
-    public float m_orbitSpeed = 8f;
-    public Transform m_parent;
-    #endregion
+    public float m_orbitSpeed = 20f;
+    public float m_unitRotationSpeed = 7f;
 
-    #region mono
+    private Transform m_parent;
+    private Vector3 localRotationDirection;
+
     void Start ()
     {
-        //m_parent = this.transform.parent;
-	}
+        m_parent = this.transform.parent;
+        localRotationDirection = Vector3.up;
+    }
 
     void Update()
     {
-        transform.Rotate(Vector3.up * Time.deltaTime * 3f);
-        transform.RotateAround(m_parent.transform.position, Vector3.up, m_orbitSpeed * Time.deltaTime);
+        transform.Rotate(Vector3.up * Time.deltaTime * m_unitRotationSpeed);
+        transform.RotateAround(m_parent.position, localRotationDirection, m_orbitSpeed * Time.deltaTime);
     }
-    #endregion
+
+    public void SetLocalRotationDirection(Vector3 direction)
+    {
+        localRotationDirection = direction;
+    }
 }
