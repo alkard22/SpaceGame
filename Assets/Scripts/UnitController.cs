@@ -6,6 +6,7 @@ public class UnitController : MonoBehaviour {
     {
         Setup,
         SetRadius,
+        Activate,
         Orbit
     }
 
@@ -40,11 +41,17 @@ public class UnitController : MonoBehaviour {
                 orbitRing.GetComponent<DrawOrbit>().SetOrbitRadius(radius);
                 orbitRing.transform.LookAt(satelliteModel);
                 break;
-            case State.Orbit:
+            case State.Activate:
                 orbitRing.GetComponent<DrawOrbit>().EnableOrbitResize(false);
-                Vector3 rotationDirection = orbitRing.transform.TransformDirection(Vector3.up);
-                satelliteModel.GetComponent<Orbit>().SetLocalRotationDirection(rotationDirection);
+                //Vector3 rotationDirection = orbitRing.transform.TransformDirection(Vector3.up);
+                //satelliteModel.GetComponent<Orbit>().SetLocalRotationDirection(rotationDirection);
                 satelliteModel.GetComponent<Orbit>().enabled = true;
+                satelliteModel.GetComponent<DestoryUnitOnCollision>().enableExplosion = true;
+                currentState = State.Orbit;
+                break;
+            case State.Orbit:
+                Vector3 rotationDirection2 = orbitRing.transform.TransformDirection(Vector3.up);
+                satelliteModel.GetComponent<Orbit>().SetLocalRotationDirection(rotationDirection2);
                 break;
         }
     }
@@ -57,6 +64,6 @@ public class UnitController : MonoBehaviour {
 
     public void ExitUnitPlacement()
     {
-        currentState = State.Orbit;
+        currentState = State.Activate;
     }
 }
