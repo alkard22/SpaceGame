@@ -62,6 +62,7 @@ public class PlanetInteraction : MonoBehaviour
 
                 // Attach this object to the hand
                 hand.AttachObject(unitModel, attachmentFlags);
+            }
         } else if (hand.GetStandardInteractionButtonUp()) {
             hand.DetachObject(unitModel);
             hand.HoverUnlock(GetComponent<Interactable>());
