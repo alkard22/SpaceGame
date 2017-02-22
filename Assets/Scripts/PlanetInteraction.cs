@@ -46,31 +46,6 @@ public class PlanetInteraction : MonoBehaviour
     //-------------------------------------------------
     private void HandHoverUpdate(Hand hand)
     {
-        /*switch(currentState) {
-            case DeploySatellite.Idle:
-                if(hand.GetStandardInteractionButton()) {
-                    currentState = DeploySatellite.SettingTrajectory;
-                }
-                break;
-            case DeploySatellite.SettingTrajectory:
-                if(hand.GetStandardInteractionButtonUp()) {
-                    currentState = DeploySatellite.Complete;
-                }
-                float radius = Vector3.Distance(hand.transform.position, this.transform.parent.position);
-                Debug.Log(radius);
-                satelliteObject.transform.position = new Vector3(0, 0, radius);
-                break;
-            case DeploySatellite.Complete:
-                break;
-        }*/
-
-        /*if(hand.GetStandardInteractionButtonDown())
-        {
-            float radius = Vector3.Distance(hand.transform.position, this.transform.parent.position);
-            Debug.Log(radius);
-            satelliteObject.transform.position = new Vector3(0, 0, radius);
-        }*/
-
         if(hand.GetStandardInteractionButtonDown()) {
             if(!unit && unitPrefab) {
                 unit = (GameObject)Instantiate(unitPrefab, 
@@ -87,32 +62,15 @@ public class PlanetInteraction : MonoBehaviour
 
                 // Attach this object to the hand
                 hand.AttachObject(unitModel, attachmentFlags);
-            } else {
-                hand.DetachObject(unitModel);
-                hand.HoverUnlock(GetComponent<Interactable>());
-                unit.GetComponent<UnitController>().ExitUnitPlacement();
-                unit = null;
-                unitModel = null;
-            }
-
-
-
-
-            //if(hand.currentAttachedObject != satelliteObject) {
-            //    // Call this to continue receiving HandHoverUpdate messages,
-            //    // and prevent the hand from hovering over anything else
-            //    hand.HoverLock(GetComponent<Interactable>());
-
-            //    // Attach this object to the hand
-            //    hand.AttachObject(satelliteObject, attachmentFlags);
-            //} else {
-            //    hand.DetachObject(satelliteObject);
-            //    hand.HoverUnlock(GetComponent<Interactable>());
-            //    satelliteController.ExitUnitPlacement();
-            //    satelliteObject = null;
-            //}
+        } else if (hand.GetStandardInteractionButtonUp()) {
+            hand.DetachObject(unitModel);
+            hand.HoverUnlock(GetComponent<Interactable>());
+            unit.GetComponent<UnitController>().ExitUnitPlacement();
+            unit = null;
+            unitModel = null;
         }
 
+        //Debug.Log("TEST");
 
         //if(hand.GetStandardInteractionButtonDown() || ((hand.controller != null) && hand.controller.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip))) {
         //    if(hand.currentAttachedObject != gameObject) {
@@ -157,9 +115,6 @@ public class PlanetInteraction : MonoBehaviour
     private void OnDetachedFromHand(Hand hand)
     {
         //textMesh.text = "Detached from hand: " + hand.name;
-        unit.GetComponent<UnitController>().ExitUnitPlacement();
-        unit = null;
-        unitModel = null;
     }
 
 
