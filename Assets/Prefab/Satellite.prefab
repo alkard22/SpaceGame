@@ -653,7 +653,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   satelliteModel: {fileID: 4555071287163398}
-  orbitRing: {fileID: 1891064344321866}
+  trajectoryPath: {fileID: 1891064344321866}
+  trajectoryLine: {fileID: 2100000, guid: cde48c3e0964c044c8d8a25503ad3f56, type: 2}
+  trajectoryLineValid: {fileID: 2100000, guid: 00867fc31731eec438d071762b3abd18, type: 2}
+  trajectoryLineInvalid: {fileID: 2100000, guid: 720b7f89fa717744a8b67861e3486798,
+    type: 2}
 --- !u!114 &114711814534436396
 MonoBehaviour:
   m_ObjectHideFlags: 1

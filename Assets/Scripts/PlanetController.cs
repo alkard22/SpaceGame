@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using Valve.VR.InteractionSystem;
 
+[RequireComponent(typeof(DrawBuildZone))]
 [RequireComponent(typeof(Interactable))]
-public class PlanetInteraction : MonoBehaviour
+
+public class PlanetController : MonoBehaviour
 {
     private Vector3 oldPosition;
     private Quaternion oldRotation;
@@ -11,15 +13,70 @@ public class PlanetInteraction : MonoBehaviour
 
     private Hand.AttachmentFlags attachmentFlags = Hand.defaultAttachmentFlags & (~Hand.AttachmentFlags.SnapOnAttach) & (~Hand.AttachmentFlags.DetachOthers);
 
+    [SerializeField]
+    [Tooltip("Minimum radius from the centre of the object a unit can be built.")]
+    private float minBuildZone = 0;
+
+    [SerializeField]
+    [Tooltip("Maximum radius from the centre of the object a unit can be built.")]
+    private float maxBuildZone = 0;
+
+#if UNITY_EDITOR
+    [SerializeField]
+    [Tooltip("Editor only feature to view the unit build zone of the planet.")]
+    private bool showBuildZone = false;
+
+    private bool oldShowBuildZone;
+    private float oldMinBuildZone;
+    private float oldMaxBuildZone;
+#endif
+
     public GameObject unitPrefab;
     private GameObject unit;
     private GameObject unitModel;
 
-    //-------------------------------------------------
-    void Awake()
+    //TODO: User clicks on planet for menu to display what units can be build around it, so need an array of unit prefabs
+
+    private void Start()
     {
-        //textMesh = GetComponentInChildren<TextMesh>();
-        //textMesh.text = "No Hand Hovering";
+
+#if UNITY_EDITOR
+        SetBuildZone();
+
+        this.GetComponent<DrawBuildZone>().DisplayBuildZone(showBuildZone);
+        oldShowBuildZone = showBuildZone;
+#endif
+    }
+
+    private void Update()
+    {
+#if UNITY_EDITOR
+
+
+        if(oldMinBuildZone != minBuildZone || oldMaxBuildZone != maxBuildZone) {
+            if(unit) {
+                unit.GetComponent<UnitController>().SetBuildZoneMinMax(minBuildZone, maxBuildZone);
+            }
+
+            SetBuildZone();
+        }
+
+        if (oldShowBuildZone != showBuildZone) {
+            this.GetComponent<DrawBuildZone>().DisplayBuildZone(showBuildZone);
+            oldShowBuildZone = showBuildZone;
+        }
+#endif
+    }
+
+    private void SetBuildZone()
+    {
+        // Scales the min and max values to correct size for planets scale
+        float minBuildZoneScaled = (minBuildZone / this.transform.localScale.x);
+        float maxBuildZoneScaled = maxBuildZone / this.transform.localScale.x;
+
+        this.GetComponent<DrawBuildZone>().SetBuildZoneMinMax(minBuildZoneScaled, maxBuildZoneScaled);
+        oldMinBuildZone = minBuildZone;
+        oldMaxBuildZone = maxBuildZone;
     }
 
 
@@ -52,6 +109,7 @@ public class PlanetInteraction : MonoBehaviour
                     this.transform.position,
                     Quaternion.identity,
                     this.transform.parent.transform);
+                unit.GetComponent<UnitController>().SetBuildZoneMinMax(minBuildZone, maxBuildZone);
                 unitModel = unit.GetComponent<UnitController>().PlaceUnit();
             }
 
