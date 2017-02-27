@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4679673712212450}
   - component: {fileID: 33183630230472212}
   - component: {fileID: 23510772916929872}
+  - component: {fileID: 65556977140173210}
   m_Layer: 0
   m_Name: SolarPanelRight
   m_TagString: Untagged
@@ -55,7 +56,6 @@ GameObject:
   - component: {fileID: 4555071287163398}
   - component: {fileID: 114711814534436396}
   - component: {fileID: 136030927144027934}
-  - component: {fileID: 65045633052645622}
   - component: {fileID: 114970282811117296}
   - component: {fileID: 54881021045769630}
   m_Layer: 0
@@ -75,6 +75,8 @@ GameObject:
   - component: {fileID: 4462050149424578}
   - component: {fileID: 33987677342668288}
   - component: {fileID: 23992149336954054}
+  - component: {fileID: 65439831149429256}
+  - component: {fileID: 65156426586533748}
   m_Layer: 0
   m_Name: SolarPanelLeft
   m_TagString: Untagged
@@ -597,24 +599,48 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
---- !u!65 &65045633052645622
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!65 &65156426586533748
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1344714295743044}
+  m_GameObject: {fileID: 1352731553440350}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0050000004, y: 0.0075000087, z: 0.0049999994}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65439831149429256
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1352731553440350}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0050000004, y: 0.0075000087, z: 0.0049999994}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65556977140173210
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1263908494496642}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.07, y: 0.01, z: 0.01}
-  m_Center: {x: 0, y: 0.0125, z: 0}
+  m_Size: {x: 0.0050000004, y: 0.0075000087, z: 0.0049999994}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114654483233700178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -656,7 +682,7 @@ MonoBehaviour:
   _horizRadius: 0
   _vertRadius: 0
   _offset: 0
-  _orbitResize: 0
+  _orbitResize: 1
 --- !u!114 &114970282811117296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -668,7 +694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cd27c6fe78fe2c488d816258295f790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionEffect: {fileID: 1322845635349516, guid: 760e1b7054021ee43875a94fd9be2ecf,
+  explosionEffectPrefab: {fileID: 1322845635349516, guid: 760e1b7054021ee43875a94fd9be2ecf,
     type: 2}
   enableExplosion: 0
 --- !u!120 &120198903828594224
@@ -702,7 +728,108 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Positions: []
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: 0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: -0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 0.0018

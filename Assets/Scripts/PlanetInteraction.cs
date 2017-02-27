@@ -71,7 +71,6 @@ public class PlanetInteraction : MonoBehaviour
             unitModel = null;
         }
 
-        //Debug.Log("TEST");
 
         //if(hand.GetStandardInteractionButtonDown() || ((hand.controller != null) && hand.controller.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip))) {
         //    if(hand.currentAttachedObject != gameObject) {
