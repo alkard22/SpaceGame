@@ -41,5 +41,13 @@ Icon?
 ehthumbs.db
 Thumbs.db
 
+# ================= #
+# Project Dependant #
+# ================= #
+
+Assets/ShaderForge/
+Assets/ShaderForge.meta
+
 # Quick Fix for .dll Issue
 !*.dll
+
