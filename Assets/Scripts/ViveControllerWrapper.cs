@@ -3,11 +3,14 @@ using System.Collections;
 
 public class ViveControllerWrapper : SteamVR_TrackedController
 {
+    //NOTE: based of tutorial found here http://russellsoftworks.com/blog/steamvr_01/
+    // IMPORTANT: In SteamVR_TrackedController.cs you need to change both Start and Update method to be protected virtual for this script to work
+
     public SteamVR_Controller.Device controller { get { return SteamVR_Controller.Input((int)controllerIndex); } }
     public Vector3 velocity { get { return controller.velocity; } }
     public Vector3 angularVelocity { get { return controller.angularVelocity; } }
 
-    protected override void Start()
+    /*protected override void Start()
     {
         base.Start();
     }
@@ -15,7 +18,7 @@ public class ViveControllerWrapper : SteamVR_TrackedController
     protected override void Update()
     {
         base.Update();
-    }
+    }*/
 
     //public float GetTriggerAxis()
     //{

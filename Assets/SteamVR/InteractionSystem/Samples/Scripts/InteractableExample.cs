@@ -24,8 +24,8 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		void Awake()
 		{
-			//textMesh = GetComponentInChildren<TextMesh>();
-			//textMesh.text = "No Hand Hovering";
+			textMesh = GetComponentInChildren<TextMesh>();
+			textMesh.text = "No Hand Hovering";
 		}
 
 
@@ -34,7 +34,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void OnHandHoverBegin( Hand hand )
 		{
-			//textMesh.text = "Hovering hand: " + hand.name;
+			textMesh.text = "Hovering hand: " + hand.name;
 		}
 
 
@@ -43,7 +43,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void OnHandHoverEnd( Hand hand )
 		{
-			//textMesh.text = "No Hand Hovering";
+			textMesh.text = "No Hand Hovering";
 		}
 
 
@@ -88,8 +88,8 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void OnAttachedToHand( Hand hand )
 		{
-			//textMesh.text = "Attached to hand: " + hand.name;
-			//attachTime = Time.time;
+			textMesh.text = "Attached to hand: " + hand.name;
+			attachTime = Time.time;
 		}
 
 
@@ -98,7 +98,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void OnDetachedFromHand( Hand hand )
 		{
-			//textMesh.text = "Detached from hand: " + hand.name;
+			textMesh.text = "Detached from hand: " + hand.name;
 		}
 
 
@@ -107,7 +107,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void HandAttachedUpdate( Hand hand )
 		{
-			//textMesh.text = "Attached to hand: " + hand.name + "\nAttached time: " + ( Time.time - attachTime ).ToString( "F2" );
+			textMesh.text = "Attached to hand: " + hand.name + "\nAttached time: " + ( Time.time - attachTime ).ToString( "F2" );
 		}
 
 
